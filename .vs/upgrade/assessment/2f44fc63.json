@@ -1,0 +1,50 @@
+{
+  "reportConfigHash": "2f44fc63",
+  "createdAtUtc": "2026-03-02T06:03:34.182797Z",
+  "entries": [
+    {
+      "packageName": "AWSSDK.S3",
+      "packageVersion": "3.7.300.2",
+      "insightsName": "AWSSDK.S3",
+      "insightsCurrentVersion": "3.7.300.2",
+      "insightsNewVersion": "",
+      "insightsDescription": "",
+      "insightsIsCompatible": true,
+      "insightsProjects": []
+    },
+    {
+      "packageName": "AWSSDK.Extensions.NETCore.Setup",
+      "packageVersion": "3.7.7",
+      "insightsName": "AWSSDK.Extensions.NETCore.Setup",
+      "insightsCurrentVersion": "3.7.7",
+      "insightsNewVersion": "",
+      "insightsDescription": "",
+      "insightsIsCompatible": true,
+      "insightsProjects": []
+    },
+    {
+      "packageName": "Microsoft.Extensions.Configuration",
+      "packageVersion": "6.0.1",
+      "insightsName": "Microsoft.Extensions.Configuration",
+      "insightsCurrentVersion": "6.0.1",
+      "insightsNewVersion": "10.0.3",
+      "insightsDescription": "NuGet package upgrade is recommended",
+      "insightsIsCompatible": true,
+      "insightsProjects": [
+        "dotnet-demo-s3.csproj"
+      ]
+    },
+    {
+      "packageName": "Microsoft.Extensions.Configuration.Json",
+      "packageVersion": "6.0.0",
+      "insightsName": "Microsoft.Extensions.Configuration.Json",
+      "insightsCurrentVersion": "6.0.0",
+      "insightsNewVersion": "10.0.3",
+      "insightsDescription": "NuGet package upgrade is recommended",
+      "insightsIsCompatible": true,
+      "insightsProjects": [
+        "dotnet-demo-s3.csproj"
+      ]
+    }
+  ]
+}
