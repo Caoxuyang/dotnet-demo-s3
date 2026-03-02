@@ -1,0 +1,138 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/azure-app-modernization/main/schemas/tasks-template-schema.json",
+  "description": "Tasks template for .NET 10.0 upgrade plan. This file tracks individual upgrade tasks for migrating dotnet-demo-s3 from .NET 6.0 to .NET 10.0 LTS.",
+  "tasks": [
+    {
+      "type": "upgrade",
+      "id": "001-upgrade-target-framework",
+      "description": "Update the project target framework from net6.0 to net10.0",
+      "requirements": "Change the TargetFramework property in dotnet-demo-s3.csproj from net6.0 to net10.0. This is the primary framework upgrade step that enables access to .NET 10.0 APIs and runtime features.",
+      "environmentConfiguration": null,
+      "status": "pending",
+      "skills": [],
+      "successCriteria": {
+        "passBuild": "true",
+        "generateNewUnitTests": "false",
+        "generateNewIntegrationTests": "false",
+        "passUnitTests": "true",
+        "passIntegrationTests": "false",
+        "securityComplianceCheck": "false"
+      }
+    },
+    {
+      "type": "upgrade",
+      "id": "002-upgrade-extensions-configuration",
+      "description": "Upgrade Microsoft.Extensions.Configuration package from 6.0.1 to 10.0.3",
+      "requirements": "Update the PackageReference for Microsoft.Extensions.Configuration in dotnet-demo-s3.csproj to version 10.0.3 to align with the target framework. This package provides core configuration functionality with no breaking changes between versions.",
+      "dependencies": ["001-upgrade-target-framework"],
+      "environmentConfiguration": null,
+      "status": "pending",
+      "skills": [],
+      "successCriteria": {
+        "passBuild": "true",
+        "generateNewUnitTests": "false",
+        "generateNewIntegrationTests": "false",
+        "passUnitTests": "true",
+        "passIntegrationTests": "false",
+        "securityComplianceCheck": "false"
+      }
+    },
+    {
+      "type": "upgrade",
+      "id": "003-upgrade-extensions-configuration-json",
+      "description": "Upgrade Microsoft.Extensions.Configuration.Json package from 6.0.0 to 10.0.3",
+      "requirements": "Update the PackageReference for Microsoft.Extensions.Configuration.Json in dotnet-demo-s3.csproj to version 10.0.3 to align with the target framework. This package enables JSON configuration file support with full backward compatibility.",
+      "dependencies": ["001-upgrade-target-framework"],
+      "environmentConfiguration": null,
+      "status": "pending",
+      "skills": [],
+      "successCriteria": {
+        "passBuild": "true",
+        "generateNewUnitTests": "false",
+        "generateNewIntegrationTests": "false",
+        "passUnitTests": "true",
+        "passIntegrationTests": "false",
+        "securityComplianceCheck": "false"
+      }
+    },
+    {
+      "type": "upgrade",
+      "id": "004-restore-dependencies",
+      "description": "Restore NuGet dependencies after framework and package updates",
+      "requirements": "Execute 'dotnet restore dotnet-demo-s3.csproj' to download and restore all package dependencies. Verify that all 4 packages (including AWS SDK packages) restore successfully without conflicts.",
+      "dependencies": ["001-upgrade-target-framework", "002-upgrade-extensions-configuration", "003-upgrade-extensions-configuration-json"],
+      "environmentConfiguration": null,
+      "status": "pending",
+      "skills": [],
+      "successCriteria": {
+        "passBuild": "true",
+        "generateNewUnitTests": "false",
+        "generateNewIntegrationTests": "false",
+        "passUnitTests": "true",
+        "passIntegrationTests": "false",
+        "securityComplianceCheck": "false"
+      }
+    },
+    {
+      "type": "upgrade",
+      "id": "005-build-solution",
+      "description": "Build the solution with .NET 10.0 to verify compilation success",
+      "requirements": "Execute 'dotnet build dotnet-demo-s3.csproj --configuration Release' to compile the project with the new target framework. Ensure zero compilation errors and zero warnings. This validates that all code is compatible with .NET 10.0.",
+      "dependencies": ["004-restore-dependencies"],
+      "environmentConfiguration": null,
+      "status": "pending",
+      "skills": [],
+      "successCriteria": {
+        "passBuild": "true",
+        "generateNewUnitTests": "false",
+        "generateNewIntegrationTests": "false",
+        "passUnitTests": "true",
+        "passIntegrationTests": "false",
+        "securityComplianceCheck": "false"
+      }
+    },
+    {
+      "type": "upgrade",
+      "id": "006-functional-validation",
+      "description": "Perform manual functional testing of S3 operations",
+      "requirements": "Execute the application and manually test all S3 functionality: configuration loading, AWS credential detection, bucket listing, file upload operations, file download operations, and error handling. Verify the application starts without exceptions and exits cleanly.",
+      "dependencies": ["005-build-solution"],
+      "environmentConfiguration": null,
+      "status": "pending",
+      "skills": [],
+      "successCriteria": {
+        "passBuild": "true",
+        "generateNewUnitTests": "false",
+        "generateNewIntegrationTests": "false",
+        "passUnitTests": "false",
+        "passIntegrationTests": "false",
+        "securityComplianceCheck": "false"
+      }
+    },
+    {
+      "type": "upgrade",
+      "id": "007-commit-changes",
+      "description": "Commit all upgrade changes to the upgrade branch",
+      "requirements": "Stage the modified dotnet-demo-s3.csproj file and commit with message: 'Upgrade to .NET 10.0 LTS - Update target framework from net6.0 to net10.0 - Upgrade Microsoft.Extensions.Configuration to 10.0.3 - Upgrade Microsoft.Extensions.Configuration.Json to 10.0.3 - Verify AWS SDK packages compatible with .NET 10.0. All builds pass, manual testing complete.' Include Co-authored-by trailer for Copilot.",
+      "dependencies": ["006-functional-validation"],
+      "environmentConfiguration": null,
+      "status": "pending",
+      "skills": [],
+      "successCriteria": {
+        "passBuild": "true",
+        "generateNewUnitTests": "false",
+        "generateNewIntegrationTests": "false",
+        "passUnitTests": "false",
+        "passIntegrationTests": "false",
+        "securityComplianceCheck": "false"
+      }
+    }
+  ],
+  "metadata": {
+    "planName": ".NET 10.0 LTS Upgrade",
+    "projectName": "dotnet-demo-s3",
+    "language": "C#",
+    "createdAt": "2026-03-02T05:50:40.275Z",
+    "version": "1.0"
+  }
+}
