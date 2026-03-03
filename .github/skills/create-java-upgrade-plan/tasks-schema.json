@@ -22,7 +22,8 @@
           { "$ref": "#/$defs/transformTask" },
           { "$ref": "#/$defs/upgradeTask" },
           { "$ref": "#/$defs/containerizationTask" },
-          { "$ref": "#/$defs/deploymentTask" }
+          { "$ref": "#/$defs/deploymentTask" },
+          { "$ref": "#/$defs/infrastructureTask" }
         ]
       }
     },
@@ -287,6 +288,36 @@
               "type": "string",
               "description": "Deployment tool name.",
               "const": "bicep"
+            }
+          }
+        }
+      ]
+    },
+    "infrastructureTask": {
+      "allOf": [
+        { "$ref": "#/$defs/taskBase" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "skills", "iacType", "provision"],
+          "properties": {
+            "type": {
+              "const": "infrastructure",
+              "description": "Infrastructure task template - Generate IaC files (Bicep or Terraform) to provision Azure resources."
+            },
+            "skills": {
+              "type": "array",
+              "description": "The skill used for this task, e.g., 'infrastructure-bicep-generation' or 'infrastructure-terraform-generation'",
+              "items": { "$ref": "#/$defs/skill" }
+            },
+            "iacType": {
+              "type": "string",
+              "description": "Infrastructure as Code tool type.",
+              "enum": ["bicep", "terraform"]
+            },
+            "provision": {
+              "type": "boolean",
+              "description": "Whether to provision Azure resources after generating IaC files."
             }
           }
         }

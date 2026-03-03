@@ -13,6 +13,8 @@ The patterns are categorized into two groups, and they should be treated differe
 These patterns have pre-defined skills to assist in their execution. When they are selected in a modernization plan, the corresponding skills should be used.
 Each of the item is written in the following format: `- **skill-name**: skill-description`.
 
+- **infrastructure-bicep-generation**: Generate Bicep IaC files for Azure infrastructure provisioning
+- **infrastructure-terraform-generation**: Generate Terraform IaC files for Azure infrastructure provisioning
 - **migration-azure-communication-email**: Migrate email sending to Azure Communication Services Email with Managed Identity. Use when migrating from SMTP, SendGrid, custom email services, or legacy email configurations using connection strings to Azure Communication Services with DefaultAzureCredential.
 - **migration-azure-confluent-kafka**: Migrate Kafka to Confluent Cloud on Azure with Managed Identity. Use when migrating .NET applications using Confluent.Kafka from local Kafka to Confluent Cloud on Azure, using Azure Managed Identity and DefaultAzureCredential.
 - **migration-azure-database-postgresql**: Migrate database connections to Azure Database for PostgreSQL with Managed Identity. Use when migrating from PostgreSQL with username/password, Npgsql client, Entity Framework Core with PostgreSQL, Oracle database migration, or local PostgreSQL to Azure PostgreSQL with password-less authentication.

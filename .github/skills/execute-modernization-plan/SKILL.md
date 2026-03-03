@@ -27,7 +27,17 @@ Given that modernization description, do this:
     - After completing a task, to update the tasks.json status to "success", "failed", or "skipped" with a task summary and task successCriteriaStatus
     - Do not stop task execution until all tasks are completed or any task fails. If one task is started, wait for final result with success, skipped or failed.
 
-3. Custom agent usage to complete the coding task:
+
+3. Custom agent usage to complete the infrastructure task:
+   For tasks with `"type": "infrastructure"` in tasks.json, call custom agent `modernize-azure-platform-engineer` with prompt:
+
+   ```md
+   Generate IaC files to ./infra/ and provision Azure infrastructure.
+   iacType: {iacType}
+   provision: {provision}
+   ```
+
+4. Custom agent usage to complete the coding task:
     1) You must call custom agent general-purpose for upgrade task of java with below prompt according to information from task.json, the upgrade task include java-version-upgrade, spring-boot-upgrade, spring-framework-upgrade and jakarta-ee-upgrade
         ```md
         Call skill execute-modernization-task to upgrade the X from {{v1}} to {{v2}} using java upgrade tools
@@ -57,7 +67,7 @@ Given that modernization description, do this:
     3) Only use the skill execute-modernization-task in custom agent to do the code change for each task
     
 
-4. Custom agent usage to complete containerization or deploy task:
+5. Custom agent usage to complete containerization or deploy task:
    Custom agent modernize-azure-deploy-developer for containerization or deploy, call the agent with prompt with below format
         ```md
         Deploy the application to Azure
@@ -67,7 +77,7 @@ Given that modernization description, do this:
         Deploy the application to existing Azure resources. Subscription ID: {subscriptionId}, Resource Group: {resourceGroup}
         ```
 
-5. Output of plan execution:
+6. Output of plan execution:
    - You needn't generate any other documents except the "modernization-summary.md" for each task
    - Just make sure the tasks.json is updated with the final status of each task
    - Make a commit when all tasks are completed with the changes made in the modernization plan.

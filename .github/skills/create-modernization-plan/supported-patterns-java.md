@@ -13,6 +13,8 @@ The patterns are categorized into two groups, and they should be treated differe
 These patterns have pre-defined skills to assist in their execution. When they are selected in a modernization plan, the corresponding skills should be used.
 Each of the item is written in the following format: `- **skill-name**: skill-description`.
 
+- **infrastructure-bicep-generation**: Generate Bicep IaC files for Azure infrastructure provisioning
+- **infrastructure-terraform-generation**: Generate Terraform IaC files for Azure infrastructure provisioning
 - **migration-AWS-secrets-manager-to-azure-key-vault**: Migrate from AWS Secrets Manager to Azure Key Vault to securely manage and access sensitive information in Azure.
 - **migration-activemq-servicebus**: Migrate from ActiveMQ Artemis to Azure Service Bus for messaging.
 - **migration-amqp-rabbitmq-servicebus**: Migrate from RabbitMQ with AMQP to Azure Service Bus for messaging.
