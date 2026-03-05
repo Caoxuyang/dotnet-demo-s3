@@ -19,7 +19,6 @@
       "id": "001-upgrade-sdk-style-conversion",
       "description": "Convert ContosoUniversity.csproj to SDK-style project format",
       "requirements": "Convert legacy non-SDK-style .csproj to modern SDK-style format. Do NOT change target framework. Remove packages.config after conversion. Verify project builds.",
-      "dependencies": [],
       "environmentConfiguration": null,
       "skills": [{ "name": "sdk-style-conversion", "location": "builtin" }],
       "successCriteria": {
@@ -37,7 +36,6 @@
       "id": "002-upgrade-target-framework-packages",
       "description": "Update target framework to net10.0 and upgrade 26 NuGet packages",
       "requirements": "Change TargetFramework to net10.0. Change Sdk to Microsoft.NET.Sdk.Web. Remove 10 packages included in framework. Remove 2 incompatible packages. Upgrade 22 packages to .NET 10.0 compatible versions. Address Microsoft.Data.SqlClient security vulnerability by upgrading to 6.1.4.",
-      "dependencies": ["001-upgrade-sdk-style-conversion"],
       "environmentConfiguration": null,
       "skills": [],
       "successCriteria": {

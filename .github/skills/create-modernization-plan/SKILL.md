@@ -36,11 +36,17 @@ Given the user input, do this:
     1) Analysis the supported patterns to find the right tasks for the issues
     2) Analysis modernization requirement from user input
 
-3. **Generate plan and tasks**: Generate plan.md and tasks.json using the templates, you will:
-    1) Follow the structure of the plan-template.md to generate the plan overview (Technical Framework, Overview, Migration Impact Summary, and Clarifications sections)
+3. **Generate plan and tasks**: Generate plan.md and tasks.json using the appropriate templates:
+
+    **Template Selection**:
+    - Use **plan-template.md** for code migration, containerization, and deployment tasks
+    - Use **infra-plan-template.md** ONLY when user explicitly requests infrastructure (e.g., "prepare infrastructure", "create landing zone", "provision resources", "generate Bicep/Terraform")
+
+    **Plan Generation**:
+    1) Follow the structure of the selected template to generate the plan
     2) Follow the rules defined in the template to fill in the sections with relevant information based on the analysis of user input and content of mentioned files
     3) Save the plan in folder ${modernization-work-folder} with the filename plan.md. If a plan already exists, overwrite it.
-    4) Generate a separate tasks.json file following the tasks-schema.json schema with all upgrade, transform, Containerization, and Deployment tasks
+    4) Generate a separate tasks.json file following the tasks-schema.json schema with all upgrade, transform, infrastructure, containerization, and deployment tasks
     5) Save the tasks in folder ${modernization-work-folder} with the filename tasks.json. If tasks.json already exists, overwrite it.
 
 
@@ -56,7 +62,7 @@ Given the user input, do this:
       2. Patterns that will be attached and available at plan execution phase, listed in the supported patterns file.
       3. Otherwise if no relevant pattern is available for the task pattern, use the prompt segment from the user directly. DO NOT expand the request scope.
     - **IMPORTANT**:
-      - You MUST NOT use the pattern name or execution prompt as the skill name in the generated plan and tasks.json.
+      - You MUST NOT use the pattern name as the skill name in the generated plan and tasks.json.
       - If there are similar skills defined in project skill `.github/skills/` versus other skills, MUST use the one defined in project.
       - Skills must be fully matched. For migration scenarios, both the source product and target product must match the task intent.
     - Each task should be independently testable with integration tests

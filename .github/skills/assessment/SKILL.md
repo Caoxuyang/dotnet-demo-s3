@@ -26,7 +26,7 @@ This skill performs a simplified assessment workflow:
      - No MCP tools required for .NET assessment
 
 2. **Clean Previous Assessment Data**:
-   - Remove files in `.github/modernize/appcat` folder to prevent interference with the new assessment
+   - Remove files in `.github/modernize/assessment` folder to prevent interference with the new assessment
    - This ensures a clean state before running the assessment
 
 3. **Run Assessment**:
@@ -37,16 +37,16 @@ This skill performs a simplified assessment workflow:
      - Install: `dotnet tool update dotnet-appcat`
      - Find all .csproj files in the workspace
      - Join project paths with semicolons: `projectPaths="project1.csproj;project2.csproj"`
-     - Run: `dotnet-appcat analyze $projectPaths --source Solution --target Any --serializer APPMODJSON --code --privacyMode Restricted --non-interactive --report {workspace-path}\.github\modernize\appcat\report.json`
+     - Run: `dotnet-appcat analyze $projectPaths --source Solution --target Any --serializer APPMODJSON --code --privacyMode Restricted --non-interactive --report {workspace-path}\.github\modernize\assessment\report.json`
    - Analyzes code for cloud migration issues
    - Generates structured assessment data
-   - Report is stored under `.github/modernize/appcat/` directory
+   - Report is stored under `.github/modernize/assessment/` directory
 
 4. **Consolidate Report** (Java projects only):
-   - Search for `report.json` under `.github/modernize/appcat/` subdirectories
-   - Common locations: `.github/modernize/appcat/result/report.json`
-   - Copy the latest report to `.github/modernize/appcat/report.json`
-   - For .NET projects, the report is already generated at `.github/modernize/appcat/report.json`
+   - Search for `report.json` under `.github/modernize/assessment/` subdirectories
+   - Common locations: `.github/modernize/assessment/result/report.json`
+   - Copy the latest report to `.github/modernize/assessment/report.json`
+   - For .NET projects, the report is already generated at `.github/modernize/assessment/report.json`
    - This consolidated report should be included in the pull request
 
 ## Input Parameters
@@ -78,19 +78,19 @@ The assessment process automatically:
 - **For Java**: Uses MCP tools to install and run AppCAT
 - **For .NET**: Installs dotnet-appcat tool and runs analysis directly
 - Executes comprehensive analysis
-- Generates report at `.github/modernize/appcat/report.json`
+- Generates report at `.github/modernize/assessment/report.json`
 
 ### Report Consolidation
 
 
 **For Java projects**:
-1. Search for `report.json` files under `.github/modernize/appcat/` subdirectories
+1. Search for `report.json` files under `.github/modernize/assessment/` subdirectories
 2. If multiple reports exist, identify the most recently modified one
-3. Copy the latest report to `.github/modernize/appcat/report.json`
+3. Copy the latest report to `.github/modernize/assessment/report.json`
 4. Include this consolidated report in the pull request
 
 **For .NET projects**:
-1. Report is directly generated at `.github/modernize/appcat/report.json`
+1. Report is directly generated at `.github/modernize/assessment/report.json`
 2. Include this report in the pull request
 
 ## Report Output Location
@@ -98,22 +98,22 @@ The assessment process automatically:
 Report location depends on project type:
 
 **For Java projects** (via MCP server):
-- Initially stored under `.github/modernize/appcat/` subdirectories
-- Common locations: `.github/modernize/appcat/result/report.json`
-- Consolidated to: `.github/modernize/appcat/report.json`
+- Initially stored under `.github/modernize/assessment/` subdirectories
+- Common locations: `.github/modernize/assessment/result/report.json`
+- Consolidated to: `.github/modernize/assessment/report.json`
 
 **For .NET projects** (direct execution):
-- Directly generated at: `.github/modernize/appcat/report.json`
+- Directly generated at: `.github/modernize/assessment/report.json`
 
 Final report location (include this in pull request):
-- `.github/modernize/appcat/report.json`
+- `.github/modernize/assessment/report.json`
 ## Success Criteria
 
 Assessment is complete when:
 - ✅ **For Java**: MCP server is available (or clear instructions provided if not)
 - ✅ **For .NET**: .NET SDK is available and dotnet-appcat tool is installed
 - ✅ AppCAT analysis executes without errors
-- ✅ Report generated at `.github/modernize/appcat/report.json`
+- ✅ Report generated at `.github/modernize/assessment/report.json`
 - ✅ Report metadata includes assessment tool version, timestamp, and configuration
 
 ## Troubleshooting
@@ -135,8 +135,8 @@ Assessment is complete when:
 - Invalid project structure or build configuration
 
 **Report Generation Issues**:
-- **For Java**: No report.json found under `.github/modernize/appcat/` subdirectories after MCP execution
-- **For .NET**: Report not generated at `.github/modernize/appcat/report.json`
+- **For Java**: No report.json found under `.github/modernize/assessment/` subdirectories after MCP execution
+- **For .NET**: Report not generated at `.github/modernize/assessment/report.json`
 - Report file is corrupted or invalid JSON
 
 For any failure, provide clear error messages and troubleshooting steps.

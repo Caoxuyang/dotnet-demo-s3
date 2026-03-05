@@ -18,7 +18,6 @@
       "id": "001-upgrade-java-spring-boot",
       "description": "Upgrade to Java 21 and Spring Boot 3.4",
       "requirements": "Upgrade JDK to 21, Spring Boot to 3.4, Spring Framework to 6.x, and migrate javax.* to jakarta.* if needed",
-      "dependencies": [],
       "environmentConfiguration": null,
       "skills": [{ "name": "java-version-upgrade", "location": "builtin" }],
       "successCriteria": {
