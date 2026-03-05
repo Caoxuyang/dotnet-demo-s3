@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Tasks template for .NET 10 upgrade plan. This file tracks individual upgrade tasks for the dotnet-demo-s3 solution.",
+  "tasks": [
+    {
+      "type": "upgrade",
+      "id": "001-upgrade-target-framework",
+      "description": "Update target framework from net6.0 to net10.0",
+      "requirements": "Update the TargetFramework property in dotnet-demo-s3.csproj from net6.0 to net10.0. This is the primary change required to upgrade the project to .NET 10.",
+      "environmentConfiguration": null,
+      "skills": [],
+      "successCriteria": {
+        "passBuild": "true",
+        "generateNewUnitTests": "false",
+        "generateNewIntegrationTests": "false",
+        "passUnitTests": "true",
+        "passIntegrationTests": "false",
+        "securityComplianceCheck": "false"
+      },
+      "status": "pending"
+    },
+    {
+      "type": "upgrade",
+      "id": "002-upgrade-configuration-packages",
+      "description": "Upgrade Microsoft.Extensions.Configuration packages to version 10.0.3",
+      "requirements": "Update Microsoft.Extensions.Configuration from 6.0.1 to 10.0.3 and Microsoft.Extensions.Configuration.Json from 6.0.0 to 10.0.3 in dotnet-demo-s3.csproj. These packages should be upgraded to align with the .NET 10 target framework.",
+      "dependencies": ["001-upgrade-target-framework"],
+      "environmentConfiguration": null,
+      "skills": [],
+      "successCriteria": {
+        "passBuild": "true",
+        "generateNewUnitTests": "false",
+        "generateNewIntegrationTests": "false",
+        "passUnitTests": "true",
+        "passIntegrationTests": "false",
+        "securityComplianceCheck": "false"
+      },
+      "status": "pending"
+    },
+    {
+      "type": "upgrade",
+      "id": "003-restore-and-build",
+      "description": "Restore dependencies and build the solution",
+      "requirements": "Execute 'dotnet restore' followed by 'dotnet build --configuration Release' to restore all NuGet packages and compile the solution. Verify build completes with zero errors and zero warnings.",
+      "dependencies": ["002-upgrade-configuration-packages"],
+      "environmentConfiguration": null,
+      "skills": [],
+      "successCriteria": {
+        "passBuild": "true",
+        "generateNewUnitTests": "false",
+        "generateNewIntegrationTests": "false",
+        "passUnitTests": "true",
+        "passIntegrationTests": "false",
+        "securityComplianceCheck": "false"
+      },
+      "status": "pending"
+    },
+    {
+      "type": "upgrade",
+      "id": "004-validate-functionality",
+      "description": "Validate S3 operations functionality after upgrade",
+      "requirements": "Perform manual smoke testing of the application to verify all S3 operations work correctly: upload a text object, download the object, update the object, list objects, and delete the object. Verify no runtime exceptions occur and AWS SDK integration functions properly.",
+      "dependencies": ["003-restore-and-build"],
+      "environmentConfiguration": "AWS credentials must be configured. S3 bucket must be accessible (update bucketName in Program.cs if needed).",
+      "skills": [],
+      "successCriteria": {
+        "passBuild": "true",
+        "generateNewUnitTests": "false",
+        "generateNewIntegrationTests": "false",
+        "passUnitTests": "true",
+        "passIntegrationTests": "false",
+        "securityComplianceCheck": "false"
+      },
+      "status": "pending"
+    }
+  ],
+  "metadata": {
+    "planName": ".NET 10 Upgrade Plan",
+    "projectName": "dotnet-demo-s3",
+    "language": "C#",
+    "createdAt": "2026-03-05T07:31:00Z",
+    "version": "1.0"
+  }
+}
